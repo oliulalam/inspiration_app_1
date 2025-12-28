@@ -75,9 +75,22 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("Promo Today", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
                   SizedBox(height: 15,),
+                  Container(
+                    height: 200,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        promoCard('assets/images/one.jpg'),
+                        promoCard('assets/images/two.jpg'),
+                        promoCard('assets/images/three.jpg'),
+                        promoCard('assets/images/four.jpg'),
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),
@@ -88,4 +101,34 @@ class _HomePageState extends State<HomePage> {
 
     );
   }
+
+  Widget promoCard(image){
+    return AspectRatio(
+      aspectRatio: 2.62/3,
+      child: Container(
+        margin: EdgeInsets.only(right: 15.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: AssetImage(image),
+          ),
+        ),
+        child: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              gradient: LinearGradient(
+                  begin: Alignment.bottomRight,
+                  stops: [0.2, 0.9],
+                  colors: [
+                    Colors.black.withOpacity(0.8),
+                    Colors.black.withOpacity(0.1),
+                  ]
+              )
+          ),
+        ),
+      ),
+    );
+  }
+
 }
